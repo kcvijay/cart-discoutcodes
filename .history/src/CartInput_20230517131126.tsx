@@ -89,11 +89,7 @@ const CartInput = () => {
           disabled={appliedDiscount}
           onChange={handleSearchChange}
         />
-        <button
-          type="submit"
-          onClick={handleDiscountApplication}
-          disabled={appliedDiscount}
-        >
+        <button type="submit" onClick={handleDiscountApplication}>
           Apply
         </button>
       </form>

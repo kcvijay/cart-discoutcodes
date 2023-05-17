@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 interface Codes {
@@ -11,12 +11,9 @@ interface Codes {
 const CartInput = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalAmount, setTotalAmount] = useState<number>(50);
-  const [discountPercent, setDiscountPercent] = useState<number>(0);
-  const [appliedDiscount, setAppliedDiscount] = useState<boolean>(false);
-  const [amountToBePaid, setAmountToBePaid] = useState<number>(totalAmount);
+  const [discountAmount, setDiscountAmount] = useState<number>(0);
   const [discountCodes, setDiscountCodes] = useState<Codes[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [infoText, setInfoText] = useState<string>("");
 
   const handleSearchDiscountCode = async () => {
     setIsLoading(true);
@@ -34,34 +31,19 @@ const CartInput = () => {
     setSearchValue(e.target.value);
   };
 
-  const handleDiscountApplication = async (e: any) => {
+  const handleDiscountApplication = (e: any) => {
     e.preventDefault();
-    await handleSearchDiscountCode();
-  };
+    handleSearchDiscountCode();
 
-  useEffect(() => {
-    if (discountCodes.length > 0) {
-      const foundCodeSet = discountCodes.find(
-        (codeset) =>
-          codeset.code === searchValue.toUpperCase() && !codeset.isUsed
-      );
-
-      if (foundCodeSet) {
-        setDiscountPercent(foundCodeSet.discountPercentage);
-        setAmountToBePaid(
-          totalAmount - totalAmount * foundCodeSet.discountPercentage
-        );
-        setInfoText(
-          `${foundCodeSet.discountPercentage * 100}% discount is applied.`
-        );
-        setAppliedDiscount(true);
-      } else {
-        setInfoText("Discount code is either not valid or already used.");
-      }
+    if (
+      discountCodes.length > 0 &&
+      discountCodes.map((codeset) => codeset.code === searchValue.toUpperCase())
+    ) {
+      console.log("discount is applied");
+    } else {
+      console.log("Error. Either discount code is not valid or used already.");
     }
-  }, [discountCodes]);
-
-  // Rest of your code...
+  };
 
   return (
     <div className="main-wrapper">
@@ -72,11 +54,7 @@ const CartInput = () => {
       </div>
       <div className="detail-block">
         <h2>Discount</h2>
-        <h2>{totalAmount * discountPercent}</h2>
-      </div>
-      <div className="detail-block">
-        <h2>Amount to pay</h2>
-        <h2>{totalAmount - totalAmount * discountPercent}</h2>
+        <h2>{"0"}</h2>
       </div>
 
       <form>
@@ -86,18 +64,13 @@ const CartInput = () => {
           name="discountCode"
           id="discountCode"
           placeholder="For ex. JFX0120"
-          disabled={appliedDiscount}
           onChange={handleSearchChange}
         />
-        <button
-          type="submit"
-          onClick={handleDiscountApplication}
-          disabled={appliedDiscount}
-        >
+        <button type="submit" onClick={handleDiscountApplication}>
           Apply
         </button>
       </form>
-      <p className="info-text">{infoText}</p>
+      <p className="info-text">Something info text</p>
     </div>
   );
 };

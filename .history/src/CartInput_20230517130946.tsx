@@ -12,7 +12,6 @@ const CartInput = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalAmount, setTotalAmount] = useState<number>(50);
   const [discountPercent, setDiscountPercent] = useState<number>(0);
-  const [appliedDiscount, setAppliedDiscount] = useState<boolean>(false);
   const [amountToBePaid, setAmountToBePaid] = useState<number>(totalAmount);
   const [discountCodes, setDiscountCodes] = useState<Codes[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -54,7 +53,6 @@ const CartInput = () => {
         setInfoText(
           `${foundCodeSet.discountPercentage * 100}% discount is applied.`
         );
-        setAppliedDiscount(true);
       } else {
         setInfoText("Discount code is either not valid or already used.");
       }
@@ -86,14 +84,9 @@ const CartInput = () => {
           name="discountCode"
           id="discountCode"
           placeholder="For ex. JFX0120"
-          disabled={appliedDiscount}
           onChange={handleSearchChange}
         />
-        <button
-          type="submit"
-          onClick={handleDiscountApplication}
-          disabled={appliedDiscount}
-        >
+        <button type="submit" onClick={handleDiscountApplication}>
           Apply
         </button>
       </form>

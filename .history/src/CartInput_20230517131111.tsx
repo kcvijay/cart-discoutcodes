@@ -86,14 +86,9 @@ const CartInput = () => {
           name="discountCode"
           id="discountCode"
           placeholder="For ex. JFX0120"
-          disabled={appliedDiscount}
           onChange={handleSearchChange}
         />
-        <button
-          type="submit"
-          onClick={handleDiscountApplication}
-          disabled={appliedDiscount}
-        >
+        <button type="submit" onClick={handleDiscountApplication}>
           Apply
         </button>
       </form>
