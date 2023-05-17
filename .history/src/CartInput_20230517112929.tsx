@@ -12,18 +12,16 @@ const CartInput = () => {
         <h2>Discount</h2>
         <h2>{"0"}</h2>
       </div>
-
+      <p>Do you have a discount code?</p>
       <form>
-        <label htmlFor="discountCode">Do you have a discount code?</label>
+        <label htmlFor="discountCode">Discount code</label>
         <input
           type="text"
           name="discountCode"
           id="discountCode"
           placeholder="For ex. JFX0120C"
         />
-        <button>Apply</button>
       </form>
-      <p className="info-text">Something info text</p>
     </div>
   );
 };

@@ -31,29 +31,3 @@ body {
   background: #fff;
   margin-bottom: 1.5rem;
 }
-/****/
-/****/
-
-form {
-  margin-bottom: 1.5rem;
-}
-
-form label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-form input {
-  padding: 1rem;
-  font-family: inherit;
-  min-width: 200px;
-  border: 1px solid #333;
-}
-
-form button {
-  display: block;
-  margin-top: 1rem;
-  padding: .5rem 2rem;
-  font-family: inherit;
-}
-

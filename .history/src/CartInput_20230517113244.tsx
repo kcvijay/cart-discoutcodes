@@ -21,7 +21,6 @@ const CartInput = () => {
           id="discountCode"
           placeholder="For ex. JFX0120C"
         />
-        <button>Apply</button>
       </form>
       <p className="info-text">Something info text</p>
     </div>
