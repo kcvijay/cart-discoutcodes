@@ -1,0 +1,10 @@
+{
+  "discountCodes": [
+    {
+      "code": "jfx0110cde",
+      "isUsed": false,
+      "discountPercentage": 0.15,
+      "validUntil": "023-12-31T23:59:59.999Z"
+    }
+  ]
+}

@@ -1,17 +1,8 @@
 import React from "react";
 
 const CartInput = () => {
-  const createString = () => {
-    const alphaNumeric = "abcdefghijklmonpqrstuvwxyz0123456789";
-    let code = "";
-
-    for (let i = 0; i < 7; i++) {
-      const randomIndex = Math.floor(Math.random() * alphaNumeric.length);
-      code += randomIndex.charAt(randomIndex);
-    }
-    return code;
-  };
-
+  const date = new Date();
+  console.log(date.toJSON());
   return (
     <div className="main-wrapper">
       <h2 className="content-header">Your cart</h2>

@@ -1,0 +1,9 @@
+{
+  "discountCodes": [
+    {
+      "code": "jfx0110cde",
+      "isUsed": false,
+      "discountPercentage": 0.15
+    }
+  ]
+}
