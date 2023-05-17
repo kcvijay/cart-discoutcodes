@@ -3,7 +3,7 @@
     {
       "id": 1,
       "code": "X2JY7ZL",
-      "isUsed": true,
+      "isUsed": false,
       "discountPercentage": 0.15,
       "validUntil": "023-12-31T23:59:59.999Z"
     },

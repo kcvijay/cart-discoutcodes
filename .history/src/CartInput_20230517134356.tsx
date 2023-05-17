@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Codes {
-  id: number;
   code: string;
   isUsed: boolean;
   discountPercentage: number;
@@ -31,9 +30,11 @@ const CartInput = () => {
     }
   };
 
-  const handleUsedDiscountCode = async (id: number) => {
+  const handleUsedDiscountCode = async (param: any) => {
     await axios
-      .patch(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
+      .put(`http://localhost:4000/discountCodes/`, {
+        param: { isUsed: true },
+      })
       .then((res) => res.data)
       .catch((error) => console.log(error));
   };
@@ -63,7 +64,7 @@ const CartInput = () => {
           `${foundCodeSet.discountPercentage * 100}% discount is applied.`
         );
         setAppliedDiscount(true);
-        handleUsedDiscountCode(foundCodeSet.id);
+        handleUsedDiscountCode(foundCodeSet);
       } else {
         setInfoText("Discount code is either not valid or already used.");
       }
@@ -112,6 +113,3 @@ const CartInput = () => {
 };
 
 export default CartInput;
-function id(id: any) {
-  throw new Error("Function not implemented.");
-}

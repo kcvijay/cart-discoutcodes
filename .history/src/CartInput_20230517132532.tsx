@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Codes {
-  id: number;
   code: string;
   isUsed: boolean;
   discountPercentage: number;
@@ -31,9 +30,9 @@ const CartInput = () => {
     }
   };
 
-  const handleUsedDiscountCode = async (id: number) => {
+  const handleUsedDiscountCode = async (index: number) => {
     await axios
-      .patch(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
+      .put(`http://localhost:4000/discountCodes/${i}`, { isUsed: true })
       .then((res) => res.data)
       .catch((error) => console.log(error));
   };
@@ -47,28 +46,31 @@ const CartInput = () => {
     await handleSearchDiscountCode();
   };
 
-  useEffect(() => {
-    if (discountCodes.length > 0) {
-      const foundCodeSet = discountCodes.find(
-        (codeset) =>
-          codeset.code === searchValue.toUpperCase() && !codeset.isUsed
-      );
+  useEffect(
+    (i: number) => {
+      if (discountCodes.length > 0) {
+        const foundCodeSet = discountCodes.find(
+          (codeset) =>
+            codeset.code === searchValue.toUpperCase() && !codeset.isUsed
+        );
 
-      if (foundCodeSet) {
-        setDiscountPercent(foundCodeSet.discountPercentage);
-        setAmountToBePaid(
-          totalAmount - totalAmount * foundCodeSet.discountPercentage
-        );
-        setInfoText(
-          `${foundCodeSet.discountPercentage * 100}% discount is applied.`
-        );
-        setAppliedDiscount(true);
-        handleUsedDiscountCode(foundCodeSet.id);
-      } else {
-        setInfoText("Discount code is either not valid or already used.");
+        if (foundCodeSet) {
+          setDiscountPercent(foundCodeSet.discountPercentage);
+          setAmountToBePaid(
+            totalAmount - totalAmount * foundCodeSet.discountPercentage
+          );
+          setInfoText(
+            `${foundCodeSet.discountPercentage * 100}% discount is applied.`
+          );
+          setAppliedDiscount(true);
+          handleUsedDiscountCode(i);
+        } else {
+          setInfoText("Discount code is either not valid or already used.");
+        }
       }
-    }
-  }, [discountCodes]);
+    },
+    [discountCodes]
+  );
 
   // Rest of your code...
 
@@ -112,6 +114,3 @@ const CartInput = () => {
 };
 
 export default CartInput;
-function id(id: any) {
-  throw new Error("Function not implemented.");
-}

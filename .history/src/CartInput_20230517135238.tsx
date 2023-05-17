@@ -33,7 +33,7 @@ const CartInput = () => {
 
   const handleUsedDiscountCode = async (id: number) => {
     await axios
-      .patch(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
+      .put(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
       .then((res) => res.data)
       .catch((error) => console.log(error));
   };

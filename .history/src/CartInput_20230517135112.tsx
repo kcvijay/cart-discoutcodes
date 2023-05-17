@@ -33,7 +33,7 @@ const CartInput = () => {
 
   const handleUsedDiscountCode = async (id: number) => {
     await axios
-      .patch(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
+      .put(`http://localhost:4000/discountCodes/${id}`, { isUsed: true })
       .then((res) => res.data)
       .catch((error) => console.log(error));
   };
@@ -63,7 +63,6 @@ const CartInput = () => {
           `${foundCodeSet.discountPercentage * 100}% discount is applied.`
         );
         setAppliedDiscount(true);
-        handleUsedDiscountCode(foundCodeSet.id);
       } else {
         setInfoText("Discount code is either not valid or already used.");
       }

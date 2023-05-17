@@ -54,6 +54,10 @@ form input:disabled {
   border: none;
 }
 
+form input:disabled::placeholder {
+  content:"Discount applied"
+}
+
 form button {
   display: block;
   margin-top: 1rem;
